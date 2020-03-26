@@ -1,0 +1,29 @@
+.search {
+  width: 800px;
+  margin: 0 auto;
+}
+.list {
+  margin-top: 100px;
+  width: 800px;
+  margin: 100px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  display: block;
+  height: 100px;
+  width: calc(33% - 20px);
+  background-color: skyblue;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+}
+.card + .card {
+  margin-left: 30px;
+}
+.card:nth-of-type(3n + 1) {
+  margin-left: 0;
+}
+.card:not(:nth-of-type(-n + 3)) {
+  margin-top: 30px;
+}
