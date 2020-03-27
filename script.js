@@ -10,6 +10,8 @@ class SortCard  {
     this.getData();
     this.setOption();
     this.setEvent();
+    console.log(this.cardsData[0].el);
+    this.fadeIn();
   }
   getData() {
     for (const card of this.cardsDOM) {
@@ -37,6 +39,7 @@ class SortCard  {
   }
   setEvent() {
     this.selectDOM.addEventListener('change', (e) => {
+      this.fadeOut();
       const selectValue = e.target.value;
       this.sortCard(selectValue);
     });
@@ -51,9 +54,31 @@ class SortCard  {
         this.listDOM.appendChild(data.el);
       }
     });
+    window.setTimeout(() => {
+     this.fadeIn();
+    },1);
+  }
+  fadeIn() {
+      const newActives = document.getElementsByClassName('js-card');
+      let i = 0;
+      function frame() {
+          newActives[i].classList.add('js-fadein');
+          i++;
+          if(i < newActives.length) {
+            window.setTimeout(()=> {
+              frame();
+            },100);
+          }
+      };
+      frame();
+  }
+  fadeOut() {
+    const newActives = document.getElementsByClassName('js-card');
+    for(const card of newActives) {
+      card.classList.remove('js-fadein')
+    }
   }
 }
 window.onload = () => {
   const start = new SortCard();
-
 };
